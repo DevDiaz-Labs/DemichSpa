@@ -1,0 +1,129 @@
+---
+// Hero.astro
+---
+<section class="hero">
+  <div class="hero-bg">
+    <!-- Using a premium unsplash image placeholder for spa/salon -->
+    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Spa Background" />
+  </div>
+  
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h2 class="subtitle">Spa</h2>
+      <h1 class="title">Demich</h1>
+      <div class="gold-separator"></div>
+      <p class="description">
+        Encuentra el balance perfecto entre relajación y belleza. Combinamos técnicas únicas y productos de alta calidad para brindarte una experiencia inolvidable.
+      </p>
+      <a href="#contact" class="btn btn-hero">Agendar Cita</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px; /* Offset for header */
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Soft white fade on the left side to make text readable */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+  }
+
+  .hero-text {
+    max-width: 500px;
+    animation: fadeUp 1s ease-out forwards;
+  }
+
+  .subtitle {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--c-primary);
+    margin-bottom: 0;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  .title {
+    font-size: 4rem;
+    color: var(--c-secondary);
+    margin-bottom: var(--s-2);
+    font-weight: 700;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    color: var(--c-text-main);
+    margin-bottom: var(--s-4);
+    line-height: 1.8;
+  }
+
+  .btn-hero {
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .subtitle { font-size: 2rem; }
+    .title { font-size: 3rem; }
+    .hero-bg::after {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+    }
+    .hero-text {
+      max-width: 100%;
+      text-align: center;
+    }
+    .subtitle { text-align: center; }
+  }
+
+  .gold-separator {
+    height: 2px;
+    width: 80px;
+    background-color: var(--c-primary);
+    margin: 1rem 0 1.5rem 0;
+  }
+</style>

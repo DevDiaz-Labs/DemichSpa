@@ -1,0 +1,277 @@
+---
+// Appointment.astro
+---
+<section id="contact" class="section appointment-section">
+  <div class="container">
+    <div class="contact-grid">
+      
+      <!-- Appointment & Socials -->
+      <div class="contact-card">
+        <h3>Agendar Cita</h3>
+        <p>¿Lista para relajarte? Solicita tu cita y nuestro equipo te contactará para confirmar.</p>
+        <form class="appointment-form">
+          <input type="text" placeholder="Tu Nombre" required />
+          <input type="email" placeholder="Correo Electrónico" required />
+          <input type="tel" placeholder="Número de Teléfono" required />
+          <select required>
+            <option value="" disabled selected>Selecciona un Servicio</option>
+            <option value="reductivo">Reductivos</option>
+            <option value="relajante">Masajes Relajantes</option>
+            <option value="linfatico">Masajes Linfáticos Post Operatorios</option>
+            <option value="facial">Faciales</option>
+          </select>
+          <button type="button" class="btn btn-full">Solicitar Cita</button>
+        </form>
+        
+        <div class="socials">
+          <p>Síguenos</p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/Demichmexico/" target="_blank" aria-label="Facebook">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule -->
+      <div class="contact-card schedule-card">
+        <h3>Horario de Atención</h3>
+        <p>Visítanos durante nuestras horas de operación.</p>
+        <ul class="schedule-list">
+          <li><span>Lunes</span> <span>7:00 a.m. - 8:00 p.m.</span></li>
+          <li><span>Martes</span> <span>7:00 a.m. - 8:00 p.m.</span></li>
+          <li><span>Miércoles</span> <span>7:00 a.m. - 5:00 p.m.</span></li>
+          <li><span style="color:var(--c-primary); font-weight:700;">Jueves</span> <span style="color:var(--c-primary); font-weight:700;">7:00 a.m. - 8:00 p.m.</span></li>
+          <li><span>Viernes</span> <span>7:00 a.m. - 8:00 p.m.</span></li>
+          <li><span>Sábado</span> <span>7:00 a.m. - 3:00 p.m.</span></li>
+          <li><span>Domingo</span> <span class="closed">Cerrado</span></li>
+        </ul>
+      </div>
+
+      <!-- Map -->
+      <div class="contact-card map-card">
+        <h3>Nuestra Ubicación</h3>
+        <p>Isabel Amalia 1508, Ampliación Las Flores 2o. Sector, 25775 Monclova, Coah.</p>
+        <div class="map-container">
+          <iframe 
+            src="https://maps.google.com/maps?q=Isabel+Amalia+1508,+Ampliaci%C3%B3n+Las+Flores+2o.+Sector,+25775+Monclova,+Coah.&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <div style="margin-top: 1rem; text-align: center;">
+          <a href="https://maps.app.goo.gl/QX7Bm7g7iig8VrVZ6" target="_blank" class="card-link" style="justify-content: center; font-size:1rem;">Ver en Google Maps &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Contact Banner -->
+  <div class="partnership-banner">
+    <div class="container">
+      <p>Contáctanos directamente: <br/> 
+        <strong>+52 1 866 143 6589</strong> &nbsp;|&nbsp; 
+        <strong>866 131 2071</strong> &nbsp;|&nbsp; 
+        <strong>866 210 1205</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .appointment-section {
+    background-color: transparent;
+    padding-bottom: 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .contact-card {
+    background: var(--c-bg-soft);
+    padding: 2.5rem 2rem;
+    border-radius: 0 0 8px 8px;
+    border-top: 3px solid var(--c-primary);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .contact-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Form Styles */
+  .appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .appointment-form input,
+  .appointment-form select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .appointment-form input:focus,
+  .appointment-form select:focus {
+    border-color: var(--c-primary);
+  }
+
+  .btn-full {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .socials p {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--c-text-main);
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    color: var(--c-primary);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s, background 0.2s, color 0.2s;
+  }
+
+  .social-icons a:hover {
+    background: var(--c-primary);
+    color: #fff;
+    transform: translateY(-3px);
+  }
+
+  /* Schedule Styles */
+  .schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .schedule-list li {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed #e0e0e0;
+    font-size: 0.95rem;
+    color: var(--c-text-main);
+  }
+
+  .schedule-list li:last-child {
+    border-bottom: none;
+  }
+
+  .schedule-list li span:first-child {
+    font-weight: 500;
+  }
+
+  .closed {
+    color: #e53935;
+    font-weight: 600;
+  }
+
+  /* Map Styles */
+  .map-card {
+    padding-bottom: 2.5rem;
+  }
+
+  .map-container {
+    flex-grow: 1;
+    min-height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+
+  .card-link {
+    font-weight: 600;
+    color: var(--c-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+  }
+
+  .card-link:hover {
+    color: var(--c-primary-hover);
+    text-decoration: underline;
+  }
+
+  /* Partnership Banner */
+  .partnership-banner {
+    background-color: var(--c-primary);
+    color: #fff;
+    text-align: center;
+    padding: 3rem 1rem;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%);
+    margin-top: 2rem;
+  }
+  
+  .partnership-banner p {
+    color: #fff;
+    font-size: 1.25rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .partnership-banner strong {
+    font-weight: 700;
+    color: #000;
+  }
+
+  @media (max-width: 992px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .map-card {
+      grid-column: 1 / 3;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .map-card {
+      grid-column: 1 / 2;
+    }
+    .partnership-banner clip-path {
+      clip-path: none;
+    }
+  }
+</style>

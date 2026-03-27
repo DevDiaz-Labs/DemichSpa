@@ -1,0 +1,250 @@
+---
+// Testimonials.astro
+const reviews = [
+  {
+    text: "Excelente trato 🙂 limpieza y sobretodo muy completó. En lo que se te vaya a trabajar ya sea. Reductivo y facial 👍❤️…",
+    name: "Lucila Fuentes velazquez",
+    stars: 5,
+  },
+  {
+    text: "Excelente lugar. 100%Recomendado el mejor masaje 💆♀️ que me han dado en mucho tiempo.Gladys tiene mucha experiencia.…",
+    name: "Dary",
+    stars: 5,
+  },
+  {
+    text: "No hay palabras para expresar y dar las gracias de excelente servicio excelente ,calidad ,atención, dedicación, estoy encantada con los resultados 1000/10",
+    name: "Odalys Balboa",
+    stars: 5,
+  },
+];
+---
+
+<section class="section testimonials">
+  <div class="container grid-container">
+    <div class="text-content">
+      <h2>Nos Encanta Escuchar<br />a Nuestros Clientes</h2>
+      <div class="gold-separator"></div>
+      <p>
+        Mira lo que nuestros clientes opinan sobre nuestra dedicación y atención
+        personalizada que los hace volver por más.
+      </p>
+    </div>
+
+    <div class="carousel-wrapper" id="reviews-carousel">
+      <button class="carousel-btn prev-btn" aria-label="Anterior">&larr;</button>
+      <div class="reviews-content track">
+        {
+          reviews.map((review) => (
+            <div class="review-card item">
+              <div class="stars">
+              {[...Array(review.stars)].map(() => (
+                <svg
+                  fill="var(--c-primary)"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))}
+            </div>
+            <p class="review-text">"{review.text}"</p>
+            <div class="review-author">
+              <p class="review-name">{review.name}</p>
+            </div>
+          </div>
+        ))
+      }
+      </div>
+      <button class="carousel-btn next-btn" aria-label="Siguiente">&rarr;</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    /* Uses global pure background */
+    background-color: transparent;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .text-content {
+    padding-top: 2rem;
+  }
+
+  .text-content h2 {
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+
+  .gold-separator {
+    height: 2px;
+    width: 60px;
+    background-color: var(--c-primary);
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    min-width: 0; /* Fix flex/grid blowout */
+    width: 100%;
+  }
+
+  .carousel-btn {
+    display: none; /* hidden on desktop */
+  }
+
+  .reviews-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .review-card {
+    background-color: var(--c-bg-soft);
+    padding: 2rem;
+    border-top: 3px solid var(--c-primary);
+    border-radius: 0 0 8px 8px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .review-text {
+    font-size: 1rem;
+    color: var(--c-text-main);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .review-author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 1rem;
+  }
+
+  .review-name {
+    color: var(--c-primary);
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .review-date {
+    font-size: 0.85rem;
+    color: var(--c-text-light);
+  }
+
+  @media (max-width: 992px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .text-content h2 {
+      text-align: center;
+    }
+    .gold-separator {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .text-content p {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Transform to horizontal carousel on tablet/mobile */
+    .reviews-content {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 1.5rem; /* space for scroll bar */
+      scrollbar-width: none;
+    }
+    
+    .reviews-content::-webkit-scrollbar {
+      display: none;
+    }
+
+    .review-card {
+      flex: 0 0 85%;
+      scroll-snap-align: center;
+    }
+
+    .carousel-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--c-primary);
+      border: 1px solid rgba(212, 175, 55, 0.3); /* Soft Gold Border */
+      z-index: 10;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: all 0.3s ease;
+    }
+    
+    .carousel-btn:hover { 
+      background: var(--c-primary); 
+      color: #fff;
+      box-shadow: var(--shadow-lg);
+    }
+    .prev-btn { left: -15px; }
+    .next-btn { right: -15px; }
+  }
+</style>
+
+<script>
+  const container = document.getElementById('reviews-carousel');
+  if (container) {
+    const track = container.querySelector('.track');
+    const prevBtn = container.querySelector('.prev-btn');
+    const nextBtn = container.querySelector('.next-btn');
+
+    if (track && prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        const item = track.querySelector('.item');
+        if (item) {
+          const gap = 24;
+          if (track.scrollLeft <= 10) {
+            track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+          } else {
+            track.scrollBy({ left: -(item.clientWidth + gap), behavior: 'smooth' });
+          }
+        }
+      });
+      nextBtn.addEventListener('click', () => {
+        const item = track.querySelector('.item');
+        if (item) {
+          const gap = 24;
+          if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+            track.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            track.scrollBy({ left: (item.clientWidth + gap), behavior: 'smooth' });
+          }
+        }
+      });
+    }
+  }
+</script>

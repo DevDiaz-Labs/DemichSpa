@@ -1,0 +1,120 @@
+---
+// Footer.astro
+---
+<footer class="footer">
+  <div class="container footer-grid">
+    <!-- Menu -->
+    <div class="footer-col">
+      <h4 class="footer-title">Menú</h4>
+      <ul class="footer-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="#services">Servicios</a></li>
+        <li><a href="#contact">Ubicación</a></li>
+        <li><a href="#contact">Citas</a></li>
+      </ul>
+    </div>
+
+    <!-- Location -->
+    <div class="footer-col location-col">
+      <h4 class="footer-title">Nuestra Ubicación</h4>
+      <h5 class="spa-name">Spa Demich</h5>
+      <ul class="address-list">
+        <li>Isabel Amalia 1508</li>
+        <li>Ampliación Las Flores 2o. Sector</li>
+        <li>25775 Monclova, Coah.</li>
+        <li style="margin-top: 1rem; color: var(--c-primary);">
+          <strong>Teléfonos:</strong><br/>
+          +52 1 866 143 6589<br/>
+          866 131 2071<br/>
+          866 210 1205
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>Copyright &copy; {new Date().getFullYear()} Spa Demich. Todos los Derechos Reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--c-secondary);
+    color: #fff;
+    padding-top: 4rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Menu takes 1 part, Location takes 2 parts */
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-title {
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+  }
+
+  .footer-links a:hover {
+    color: var(--c-primary);
+  }
+
+  .spa-name {
+    color: var(--c-primary);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-body);
+  }
+
+  .address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .footer-bottom {
+    background-color: #050a05;
+    padding: 1.5rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .footer-bottom p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
+
