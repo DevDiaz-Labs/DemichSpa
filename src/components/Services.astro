@@ -41,7 +41,9 @@ const services = [
     </div>
 
     <div class="carousel-wrapper" id="services-carousel">
-      <button class="carousel-btn prev-btn" aria-label="Anterior">&larr;</button>
+      <button class="carousel-btn prev-btn" aria-label="Anterior">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
       
       <div class="services-grid track">
         {services.map(service => (
@@ -58,7 +60,9 @@ const services = [
         ))}
       </div>
 
-      <button class="carousel-btn next-btn" aria-label="Siguiente">&rarr;</button>
+      <button class="carousel-btn next-btn" aria-label="Siguiente">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
 
     <div class="actions">
@@ -110,59 +114,73 @@ const services = [
 
   .service-card {
     position: relative;
-    border-radius: 0;
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow-sm);
-    transition: transform var(--transition), box-shadow var(--transition);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,0.03);
   }
 
   .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15); /* Toque elegante con luz dorada en sombra */
   }
 
   .card-image-wrapper {
     width: 100%;
-    height: 300px;
+    height: 260px;
     overflow: hidden;
+    position: relative;
+  }
+
+  .card-image-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.15) 0%, transparent 100%);
+    pointer-events: none;
   }
 
   .card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.7s ease;
   }
 
   .service-card:hover .card-image {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 
   .card-content {
-    background-color: var(--c-bg-soft);
-    padding: 1.5rem;
+    background-color: var(--c-bg-soft, #ffffff);
+    padding: 2rem 1.5rem;
     position: relative;
     z-index: 2;
-    margin: -3rem 1rem 0 0; /* Overlaps image on the left side but leaves gap on right */
-    box-shadow: var(--shadow-sm);
-    min-height: 220px;
     display: flex;
     flex-direction: column;
-    border-top: 3px solid var(--c-primary);
-    border-radius: 0 0 8px 8px;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
   }
 
   .card-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    margin-bottom: 0.85rem;
+    font-family: var(--font-heading);
+    color: var(--c-text-main);
   }
 
   .card-content p {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.8rem;
     flex-grow: 1;
+    color: var(--c-text-light);
+    line-height: 1.6;
   }
 
   .card-link {
@@ -170,14 +188,18 @@ const services = [
     color: var(--c-primary);
     text-transform: uppercase;
     font-size: 0.85rem;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 0.6rem 1.8rem;
+    border: 1px solid var(--c-primary);
+    border-radius: 30px;
+    transition: all 0.3s ease;
   }
 
   .card-link:hover {
-    color: var(--c-primary-hover);
-    text-decoration: underline;
+    background-color: var(--c-primary);
+    color: #fff;
+    text-decoration: none;
   }
 
   .actions {
@@ -241,25 +263,26 @@ const services = [
       position: absolute;
       top: 40%;
       transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: #fff;
-      color: var(--c-primary);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--c-text-main, #333);
+      border: none;
       z-index: 10;
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
       cursor: pointer;
-      font-size: 1.25rem;
+      backdrop-filter: blur(4px);
       transition: all 0.3s ease;
     }
     .carousel-btn:hover { 
-      background: var(--c-primary); 
+      background: var(--c-primary, #d4af37); 
       color: #fff;
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+      transform: translateY(-50%) scale(1.05);
     }
-    .prev-btn { left: -10px; }
-    .next-btn { right: -10px; }
+    .prev-btn { left: 5px; }
+    .next-btn { right: 5px; }
   }
 </style>
 

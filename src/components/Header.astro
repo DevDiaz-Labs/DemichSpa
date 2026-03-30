@@ -5,7 +5,7 @@
   <div class="container header-content">
     <div class="logo">
       <a href="/">
-        <span class="brand" style="color: var(--c-secondary);">Spa</span> <span class="name" style="color: var(--c-primary);">Demich</span>
+        <img src="/images/logo2.png" alt="Spa Demich Logo" class="logo-img" />
       </a>
     </div>
 
@@ -36,54 +36,110 @@
 
 <style>
   .header {
-    position: absolute;
+    position: relative; /* relative para no solapar a los servicios que ahora van primero */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
+    z-index: 1000;
+    background-color: #ffffff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   }
 
   .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 75px; /* Más finito */
   }
 
-  .logo a {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
+  .logo {
     display: flex;
-    flex-direction: column;
-    line-height: 1;
-    color: var(--c-text-main);
+    align-items: center;
   }
 
-  .logo .brand { color: var(--c-primary); }
+  .logo-img {
+    height: 55px; /* Proporcional a la nueva altura pura */
+    width: auto;
+    object-fit: contain;
+    display: block;
+    mix-blend-mode: multiply;
+    transition: transform 0.3s ease;
+  }
+
+  .logo-img:hover {
+    transform: scale(1.02);
+  }
+
+  .nav-desktop {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
 
   .nav-desktop ul {
     display: flex;
-    gap: 1.5rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
   .nav-desktop a {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    color: var(--c-text-main);
+    color: var(--c-text-main, #333);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+  }
+
+  .nav-desktop a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--c-primary);
+    transition: width 0.3s ease;
   }
 
   .nav-desktop a:hover {
     color: var(--c-primary);
+    text-decoration: none;
+  }
+
+  .nav-desktop a:hover::after {
+    width: 100%;
+  }
+
+  .cta {
+    display: flex;
+    align-items: center;
   }
 
   .btn-sm {
-    padding: 0.5rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 0.6rem 1.8rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    border-radius: 30px;
+    background-color: var(--c-primary);
+    color: #fff;
+    border: 2px solid var(--c-primary);
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .btn-sm:hover {
+    background-color: transparent;
+    color: var(--c-primary);
   }
 
   .mobile-menu-btn {
@@ -91,10 +147,23 @@
     background: none;
     border: none;
     color: var(--c-text-main);
+    cursor: pointer;
+    padding: 0.5rem;
   }
 
   @media (max-width: 992px) {
     .nav-desktop { display: none; }
-    .mobile-menu-btn { display: block; }
+    .mobile-menu-btn { display: none; } /* Ocultar hamburguesa a petición */
+    .header-content { height: 70px; }
+    .logo-img { height: 45px; }
+  }
+  
+  @media (max-width: 576px) {
+    /* Mostrar el botón CTA en lugar de la hamburguesa */
+    .cta { display: flex; } 
+    .btn-sm {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.75rem;
+    }
   }
 </style>

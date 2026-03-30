@@ -1,21 +1,33 @@
 ---
 // Hero.astro
 ---
+
 <section class="hero">
   <div class="hero-bg">
-    <!-- Using a premium unsplash image placeholder for spa/salon -->
-    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Spa Background" />
+    <img src="/images/HERO.avif" alt="Spa Demich - Experiencia Relajante" class="hero-image" />
+    <div class="hero-overlay"></div>
   </div>
-  
-  <div class="container hero-content">
-    <div class="hero-text">
-      <h2 class="subtitle">Spa</h2>
-      <h1 class="title">Demich</h1>
-      <div class="gold-separator"></div>
-      <p class="description">
-        Encuentra el balance perfecto entre relajación y belleza. Combinamos técnicas únicas y productos de alta calidad para brindarte una experiencia inolvidable.
-      </p>
-      <a href="#contact" class="btn btn-hero">Agendar Cita</a>
+
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="/images/logo.png" alt="Demich Spa" />
+    </div>
+
+    <h1 class="hero-title">
+      <span class="title-line">Bienvenido a</span>
+      <span class="title-main">Demich Spa</span>
+    </h1>
+    
+    <div class="gold-accent"></div>
+
+    <p class="hero-description">
+      Tu refugio de bienestar y belleza. Combinamos técnicas únicas y productos 
+      de alta calidad para brindarte una experiencia inolvidable.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Agendar Cita</a>
+      <a href="#services" class="btn-outline">Ver Servicios</a>
     </div>
   </div>
 </section>
@@ -23,77 +35,174 @@
 <style>
   .hero {
     position: relative;
-    min-height: 90vh;
+    width: 100%;
+    /* Compensar la altura del header para que encaje EXACTO en la pantalla */
+    min-height: calc(100vh - 100px);
     display: flex;
     align-items: center;
-    padding-top: 80px; /* Offset for header */
+    justify-content: center;
     overflow: hidden;
+    padding-bottom: 4rem; /* Dar espacio para el indicador de scroll */
   }
 
   .hero-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+    inset: 0;
+    z-index: 1;
   }
-
-  .hero-bg img {
+  
+  .hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    animation: slowZoom 20s ease-out infinite alternate;
   }
 
-  /* Soft white fade on the left side to make text readable */
-  .hero-bg::after {
-    content: '';
+  .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0) 100%);
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.25) 50%,
+      rgba(0, 0, 0, 0.45) 100%
+    );
   }
 
   .hero-content {
     position: relative;
     z-index: 10;
     width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .hero-text {
-    max-width: 500px;
-    animation: fadeUp 1s ease-out forwards;
+  /* Contenedor elegante y cuadrado para el logo */
+  .hero-logo {
+    background: #ffffff;
+    padding: 1rem; /* Padding más compacto */
+    border-radius: 8px; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1.5rem; /* Margen inferior reducido */
+    animation: fadeUp 1s cubic-bezier(0.22,0.85,0.32,1) forwards;
   }
 
-  .subtitle {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    color: var(--c-primary);
-    margin-bottom: 0;
-    text-align: left;
+  .hero-logo img {
+    max-width: 160px; /* Tamaño del logo super reducido para encajar perfecto */
+    height: auto;
+    display: block;
+  }
+
+  .hero-title {
+    font-family: var(--font-heading, serif);
+    font-size: clamp(3rem, 6.5vw, 4.2rem); /* Letras más grandes para destacar en PC */
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    animation: fadeUp 1s cubic-bezier(0.22,0.85,0.32,1) 0.2s forwards;
+    opacity: 0;
+  }
+
+  .title-line {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .title-main {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
+  .gold-accent {
+    width: 80px;
+    height: 2px;
+    background: var(--c-primary, #d4af37);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1s cubic-bezier(0.22,0.85,0.32,1) 0.4s forwards;
+    opacity: 0;
+  }
+
+  .hero-description {
+    font-family: var(--font-body, sans-serif);
+    font-size: 1.25rem; /* Texto descriptivo más grande en computadora */
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto 2rem auto;
+    font-weight: 400;
+    animation: fadeUp 1s cubic-bezier(0.22,0.85,0.32,1) 0.5s forwards;
+    opacity: 0;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 1s cubic-bezier(0.22,0.85,0.32,1) 0.6s forwards;
+    opacity: 0;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 3rem; 
+    background-color: var(--c-primary, #d4af37);
+    color: #ffffff;
+    font-size: 0.95rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--c-primary, #d4af37);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
   }
 
-  .title {
-    font-size: 4rem;
-    color: var(--c-secondary);
-    margin-bottom: var(--s-2);
-    font-weight: 700;
+  .btn-primary:hover {
+    background-color: transparent;
+    color: #fff;
+    border-color: #fff;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
   }
 
-  .description {
-    font-size: 1.125rem;
-    color: var(--c-text-main);
-    margin-bottom: var(--s-4);
-    line-height: 1.8;
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 3rem;
+    background-color: transparent;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
   }
 
-  .btn-hero {
-    padding: 1rem 2.5rem;
-    font-size: 1.125rem;
+  .btn-outline:hover {
+    background-color: #fff;
+    color: var(--c-secondary, #1a1a1a);
+    transform: translateY(-3px);
   }
 
   @keyframes fadeUp {
@@ -107,23 +216,35 @@
     }
   }
 
-  @media (max-width: 768px) {
-    .subtitle { font-size: 2rem; }
-    .title { font-size: 3rem; }
-    .hero-bg::after {
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
-    }
-    .hero-text {
-      max-width: 100%;
-      text-align: center;
-    }
-    .subtitle { text-align: center; }
+  @keyframes slowZoom {
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.08); }
   }
 
-  .gold-separator {
-    height: 2px;
-    width: 80px;
-    background-color: var(--c-primary);
-    margin: 1rem 0 1.5rem 0;
+  @media (max-width: 768px) {
+    .hero-logo {
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .hero-logo img {
+      max-width: 120px; /* Súper pequeño en celular para dejar espacio */
+    }
+    
+    .hero-description {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      gap: 0.8rem;
+      width: 100%;
+      padding: 0 1.5rem;
+    }
+    
+    .btn-primary, .btn-outline {
+      width: 100%;
+      padding: 0.8rem;
+    }
   }
 </style>
