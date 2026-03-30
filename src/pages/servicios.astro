@@ -1,0 +1,1119 @@
+---
+---
+
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Spa Demich - Explora todos nuestros servicios de relajación, cuidado facial y masajes." />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<link rel="icon" href="/favicon.ico" />
+		<title>Servicios | Spa Demich</title>
+
+		<!-- Google Fonts (same as main site) -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+		<style>
+			:root {
+				--c-primary: #D4AF37;
+				--c-primary-hover: #C5A059;
+				--c-secondary: #000000;
+				--c-text-main: #000000;
+				--c-text-light: #333333;
+				--c-bg-main: #FFFFFF;
+				--c-bg-soft: rgba(198, 178, 241, 0.15);
+				--c-accent-lavender: #C6B2F1;
+				--c-accent-blue: #97C4F8;
+				--c-accent-pink: #E4A6EB;
+				--font-heading: 'Playfair Display', serif;
+				--font-body: 'Inter', sans-serif;
+			}
+
+			*, *::before, *::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			html {
+				font-family: var(--font-body);
+				font-weight: 300;
+				color: var(--c-text-main);
+				background-color: var(--c-bg-main);
+				scroll-behavior: smooth;
+				font-size: 16px;
+				position: relative;
+				overflow-x: hidden;
+			}
+
+			/* Decoración con manchas de color (mismas que la página principal) */
+			body::before, body::after, html::before {
+				content: '';
+				position: fixed;
+				border-radius: 50%;
+				filter: blur(150px);
+				z-index: -2;
+				opacity: 0.45;
+				pointer-events: none;
+			}
+
+			html::before {
+				width: 60vw;
+				height: 60vh;
+				background: var(--c-accent-blue);
+				top: -10vh;
+				left: -20vw;
+			}
+
+			body::before {
+				width: 50vw;
+				height: 50vh;
+				background: var(--c-accent-lavender);
+				bottom: 0;
+				right: -10vw;
+			}
+
+			body::after {
+				width: 40vw;
+				height: 40vh;
+				background: var(--c-accent-pink);
+				bottom: -10vh;
+				right: 10vw;
+			}
+
+			body {
+				line-height: 1.6;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			h1, h2, h3, h4 {
+				font-family: var(--font-heading);
+				font-weight: 500;
+				line-height: 1.2;
+			}
+
+			a {
+				color: inherit;
+				text-decoration: none;
+				transition: color 0.3s ease;
+			}
+
+			img {
+				max-width: 100%;
+				display: block;
+				height: auto;
+			}
+
+			button {
+				cursor: pointer;
+				font-family: var(--font-body);
+			}
+
+			ul { list-style: none; }
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+
+			/* ═══════════════════════════════════════
+			   NAVBAR
+			   ═══════════════════════════════════════ */
+			.navbar {
+				position: fixed;
+				top: 0;
+				width: 100%;
+				background: rgba(255, 255, 255, 0.95);
+				backdrop-filter: blur(12px);
+				-webkit-backdrop-filter: blur(12px);
+				z-index: 1000;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+				box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+			}
+
+			.nav-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0.5rem 1.5rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				height: 75px;
+			}
+
+			.nav-logo-img {
+				height: 55px;
+				width: auto;
+				object-fit: contain;
+				mix-blend-mode: multiply;
+				transition: transform 0.3s ease;
+			}
+
+			.nav-logo-img:hover {
+				transform: scale(1.02);
+			}
+
+			.nav-links {
+				display: flex;
+				list-style: none;
+				gap: 2.5rem;
+			}
+
+			.nav-links a {
+				font-size: 0.95rem;
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: var(--c-text-main);
+				position: relative;
+				padding-bottom: 5px;
+			}
+
+			.nav-links a::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 0%;
+				height: 2px;
+				background-color: var(--c-primary);
+				transition: width 0.3s ease;
+			}
+
+			.nav-links a:hover {
+				color: var(--c-primary);
+			}
+
+			.nav-links a:hover::after {
+				width: 100%;
+			}
+
+			.btn-nav {
+				padding: 0.6rem 1.8rem;
+				font-size: 0.85rem;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-weight: 600;
+				border-radius: 30px;
+				background-color: var(--c-primary);
+				color: #fff;
+				border: 2px solid var(--c-primary);
+				transition: all 0.3s ease;
+				text-decoration: none;
+			}
+
+			.btn-nav:hover {
+				background-color: transparent;
+				color: var(--c-primary);
+			}
+
+			/* ═══════════════════════════════════════
+			   HERO
+			   ═══════════════════════════════════════ */
+			.services-hero {
+				padding: 160px 0 80px;
+				text-align: center;
+				position: relative;
+			}
+
+			.services-hero h1 {
+				font-size: 3.5rem;
+				color: var(--c-text-main);
+				margin-bottom: 1rem;
+			}
+
+			.services-hero .gold-line {
+				height: 2px;
+				width: 60px;
+				background-color: var(--c-primary);
+				margin: 1rem auto 1.5rem auto;
+			}
+
+			.services-hero p {
+				font-size: 1.15rem;
+				color: var(--c-text-light);
+				max-width: 600px;
+				margin: 0 auto;
+				line-height: 1.7;
+			}
+
+			/* ═══════════════════════════════════════
+			   GRID DE SERVICIOS
+			   ═══════════════════════════════════════ */
+			.services-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				gap: 2rem;
+				padding: 3rem 0 8rem;
+			}
+
+			.service-card {
+				background: #fff;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+				transition: transform 0.4s ease, box-shadow 0.4s ease;
+				display: flex;
+				flex-direction: column;
+				border: 1px solid rgba(0,0,0,0.03);
+			}
+
+			.service-card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+			}
+
+			.service-img-box {
+				height: 220px;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.service-img-box::after {
+				content: '';
+				position: absolute;
+				bottom: 0; left: 0; right: 0;
+				height: 40%;
+				background: linear-gradient(to top, rgba(0,0,0,0.1) 0%, transparent 100%);
+				pointer-events: none;
+			}
+
+			.service-img-box img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.7s ease;
+			}
+
+			.service-card:hover .service-img-box img {
+				transform: scale(1.08);
+			}
+
+			.service-info {
+				padding: 1.5rem;
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
+			.service-info h3 {
+				font-size: 1.3rem;
+				margin-bottom: 0.5rem;
+				color: var(--c-text-main);
+			}
+
+			.service-info p {
+				font-size: 0.9rem;
+				color: #777;
+				margin-bottom: 1.5rem;
+				line-height: 1.6;
+			}
+
+			/* Botón "Añadir" */
+			.add-to-cart-btn {
+				width: 100%;
+				padding: 0.85rem;
+				background: transparent;
+				color: var(--c-primary);
+				border: 1.5px solid var(--c-primary);
+				border-radius: 30px;
+				cursor: pointer;
+				font-weight: 600;
+				font-size: 0.85rem;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				transition: all 0.3s ease;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+			}
+
+			.add-to-cart-btn:hover {
+				background: var(--c-primary);
+				color: #fff;
+				box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+			}
+
+			.add-to-cart-btn svg {
+				transition: transform 0.3s ease;
+			}
+
+			.add-to-cart-btn:hover svg {
+				transform: rotate(90deg);
+			}
+
+			/* ═══════════════════════════════════════
+			   BOLSITA FLOTANTE
+			   ═══════════════════════════════════════ */
+			.cart-float {
+				position: fixed;
+				bottom: 30px;
+				right: 30px;
+				z-index: 1001;
+			}
+
+			.cart-trigger {
+				width: 65px;
+				height: 65px;
+				background: var(--c-secondary);
+				color: #fff;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+				position: relative;
+				transition: all 0.3s ease;
+			}
+
+			.cart-trigger:hover {
+				transform: scale(1.1);
+				background: var(--c-primary);
+			}
+
+			.cart-count {
+				position: absolute;
+				top: -5px;
+				right: -5px;
+				background: var(--c-primary);
+				color: white;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				font-size: 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: 600;
+				border: 2px solid white;
+			}
+
+			/* ═══════════════════════════════════════
+			   PANEL LATERAL (CARRITO)
+			   ═══════════════════════════════════════ */
+			.cart-panel {
+				position: fixed;
+				top: 0;
+				right: -400px;
+				width: 100%;
+				max-width: 400px;
+				height: 100%;
+				background: #fff;
+				z-index: 2000;
+				box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+				transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+				display: flex;
+				flex-direction: column;
+				padding: 2rem;
+			}
+
+			.cart-panel.active {
+				right: 0;
+			}
+
+			.cart-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 2rem;
+				border-bottom: 1px solid #eee;
+				padding-bottom: 1rem;
+			}
+
+			.cart-header h2 {
+				font-family: var(--font-heading);
+				font-size: 1.5rem;
+				color: var(--c-text-main);
+				text-align: left;
+			}
+
+			.close-cart {
+				cursor: pointer;
+				background: none;
+				border: none;
+				font-size: 1.8rem;
+				color: #999;
+				transition: color 0.2s ease;
+			}
+
+			.close-cart:hover {
+				color: var(--c-text-main);
+			}
+
+			.cart-items {
+				flex-grow: 1;
+				overflow-y: auto;
+				margin-bottom: 2rem;
+			}
+		</style>
+
+		<style is:global>
+			/* ═══════════════════════════════════════
+			   ESTILOS DINÁMICOS DEL CARRITO
+			   ═══════════════════════════════════════ */
+			.cart-item {
+				display: flex !important;
+				gap: 1rem !important;
+				align-items: center !important;
+				padding: 1rem !important;
+				background: #fafafa !important;
+				border-radius: 12px !important;
+				margin-bottom: 1rem !important;
+				border: 1px solid rgba(0,0,0,0.04) !important;
+				animation: slideIn 0.3s ease forwards;
+			}
+
+			.cart-item-img {
+				width: 70px !important;
+				height: 70px !important;
+				min-width: 70px !important;
+				max-width: 70px !important;
+				border-radius: 10px !important;
+				object-fit: cover !important;
+				flex-shrink: 0 !important;
+				background: #eee !important;
+			}
+
+			.cart-item-details {
+				flex-grow: 1 !important;
+				min-width: 0;
+			}
+
+			.cart-item-name {
+				font-size: 0.95rem !important;
+				font-weight: 500 !important;
+				margin-bottom: 0.4rem !important;
+				display: block !important;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				color: #000 !important;
+			}
+
+			.quantity-controls {
+				display: flex !important;
+				align-items: center !important;
+				gap: 0.8rem !important;
+				background: white !important;
+				padding: 4px 8px !important;
+				border-radius: 20px !important;
+				width: fit-content !important;
+				border: 1px solid #eee !important;
+			}
+
+			.remove-item {
+				color: #999 !important;
+				cursor: pointer !important;
+				background: none !important;
+				border: none !important;
+				padding: 8px !important;
+				transition: all 0.2s ease !important;
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				flex-shrink: 0 !important;
+			}
+
+			.remove-item:hover { color: #e74c3c !important; transform: scale(1.1) !important; }
+
+			.qty-btn {
+				background: none !important;
+				border: none !important;
+				width: 24px !important;
+				height: 24px !important;
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				cursor: pointer !important;
+				color: var(--c-primary, #D4AF37) !important;
+				font-size: 1.1rem !important;
+				transition: color 0.2s !important;
+			}
+
+			.qty-btn:hover { color: #000 !important; }
+
+			.qty-value {
+				font-size: 0.9rem !important;
+				font-weight: 600 !important;
+				min-width: 15px !important;
+				text-align: center !important;
+				color: #000 !important;
+			}
+
+			@keyframes slideIn {
+				from { transform: translateX(20px); opacity: 0; }
+				to { transform: translateX(0); opacity: 1; }
+			}
+
+			@keyframes fadeInUp {
+				from { transform: translateY(30px); opacity: 0; }
+				to { transform: translateY(0); opacity: 1; }
+			}
+
+			.pulse {
+				animation: pulse-trigger 0.4s ease;
+			}
+
+			@keyframes pulse-trigger {
+				0% { transform: scale(1); }
+				50% { transform: scale(1.3); }
+				100% { transform: scale(1); }
+			}
+
+			/* Footer del carrito */
+			.cart-footer {
+				border-top: 1px solid #eee;
+				padding-top: 2rem;
+			}
+
+			.whatsapp-btn {
+				width: 100%;
+				padding: 1.2rem;
+				background: #25d366;
+				color: white;
+				border: none;
+				border-radius: 50px;
+				font-size: 1.05rem;
+				font-weight: 600;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.8rem;
+				transition: all 0.3s ease;
+				text-decoration: none;
+				font-family: 'Inter', sans-serif;
+			}
+
+			.whatsapp-btn:hover {
+				background: #20ba59;
+				transform: translateY(-3px);
+				box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+			}
+
+			/* Overlay */
+			.overlay {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0,0,0,0.5);
+				backdrop-filter: blur(4px);
+				z-index: 1999;
+				display: none;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			.overlay.active {
+				display: block;
+				opacity: 1;
+			}
+
+			/* ═══════════════════════════════════════
+			   FOOTER (Consistente con el sitio principal)
+			   ═══════════════════════════════════════ */
+			.page-footer {
+				background-color: #000;
+				color: #fff;
+				padding-top: 3rem;
+			}
+
+			.footer-inner {
+				display: grid;
+				grid-template-columns: 1fr 2fr;
+				gap: 4rem;
+				margin-bottom: 2rem;
+			}
+
+			.footer-title {
+				color: #fff;
+				font-family: var(--font-heading);
+				font-size: 1.25rem;
+				margin-bottom: 1.5rem;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				border-bottom: 1px solid rgba(255,255,255,0.1);
+				padding-bottom: 0.5rem;
+				display: inline-block;
+			}
+
+			.footer-nav-links {
+				display: flex;
+				flex-direction: column;
+				gap: 0.8rem;
+			}
+
+			.footer-nav-links a {
+				color: rgba(255,255,255,0.7);
+				font-size: 0.95rem;
+			}
+
+			.footer-nav-links a:hover {
+				color: var(--c-primary);
+			}
+
+			.footer-address {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				color: rgba(255,255,255,0.6);
+				font-size: 0.95rem;
+				line-height: 1.6;
+			}
+
+			.footer-bottom {
+				background-color: #050a05;
+				padding: 1.5rem 0;
+				text-align: center;
+				border-top: 1px solid rgba(255,255,255,0.05);
+			}
+
+			.footer-bottom p {
+				color: rgba(255,255,255,0.5);
+				font-size: 0.85rem;
+				margin: 0;
+			}
+
+			.dev-link {
+				color: var(--c-primary, #D4AF37);
+				text-decoration: none;
+				position: relative;
+				font-weight: 500;
+				transition: color 0.3s ease;
+				margin-left: 0.3rem;
+			}
+
+			.dev-link::after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 1px;
+				bottom: -2px;
+				left: 0;
+				background-color: var(--c-primary);
+				transition: width 0.3s ease;
+			}
+
+			.dev-link:hover { color: #fff; }
+			.dev-link:hover::after { width: 100%; }
+
+			/* ═══════════════════════════════════════
+			   RESPONSIVE
+			   ═══════════════════════════════════════ */
+			@media (max-width: 992px) {
+				.nav-links { display: none !important; }
+				.nav-container { height: 70px; }
+				.nav-logo-img { height: 45px; }
+			}
+
+			@media (max-width: 768px) {
+				.services-hero { padding: 130px 0 60px; }
+				.services-hero h1 { font-size: 2.5rem; }
+				.cart-panel { max-width: 100%; }
+				.footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+			}
+
+			@media (min-width: 993px) {
+				.back-home-btn { display: none; }
+			}
+
+			.back-home-btn {
+				color: var(--c-primary);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.5rem;
+				transition: transform 0.3s ease;
+			}
+
+			.back-home-btn:hover {
+				transform: translateX(-3px);
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ═══ Navbar ═══ -->
+		<nav class="navbar">
+			<div class="nav-container">
+				<a href="/" class="back-home-btn" aria-label="Ir al Inicio">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+						<line x1="19" y1="12" x2="5" y2="12"></line>
+						<polyline points="12 19 5 12 12 5"></polyline>
+					</svg>
+				</a>
+				<div class="logo">
+					<a href="/"><img src="/images/logo2.png" alt="Spa Demich" class="nav-logo-img" /></a>
+				</div>
+				<ul class="nav-links">
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/#services">Servicios</a></li>
+					<li><a href="/#contact">Citas</a></li>
+					<li><a href="/#contact">Ubicación</a></li>
+				</ul>
+				<div>
+					<a href="/#contact" class="btn-nav">Reservar Ahora</a>
+				</div>
+			</div>
+		</nav>
+
+		<!-- ═══ Hero ═══ -->
+		<header class="services-hero">
+			<div class="container" style="animation: fadeInUp 1s ease forwards;">
+				<h1>Nuestros Servicios</h1>
+				<div class="gold-line"></div>
+				<p>Explora nuestro catálogo completo y diseña tu experiencia de bienestar ideal. Añade tus servicios favoritos y reserva por WhatsApp.</p>
+			</div>
+		</header>
+
+		<!-- ═══ Grid de Servicios ═══ -->
+		<main class="container">
+			<div class="services-grid">
+				<!-- 1. Masaje Relajante -->
+				<div class="service-card">
+					<div class="service-img-box">
+						<img src="/images/masaje relajante.webp" alt="Masaje Relajante" />
+					</div>
+					<div class="service-info">
+						<div>
+							<h3>Masaje Relajante</h3>
+							<p>Libera la tensión de tu cuerpo y mente. Terapias diseñadas para brindarte paz profunda.</p>
+						</div>
+						<button class="add-to-cart-btn" onclick="addToCart('Masaje Relajante', '/images/masaje relajante.webp')">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+							Añadir a la lista
+						</button>
+					</div>
+				</div>
+
+				<!-- 2. Pedicure Spa -->
+				<div class="service-card">
+					<div class="service-img-box">
+						<img src="/images/PEDICURE-SPA.webp" alt="Pedicure Spa" />
+					</div>
+					<div class="service-info">
+						<div>
+							<h3>Pedicure Spa</h3>
+							<p>Tratamiento reparador para pies que incluye exfoliación, hidratación y cuidado profundo.</p>
+						</div>
+						<button class="add-to-cart-btn" onclick="addToCart('Pedicure Spa', '/images/PEDICURE-SPA.webp')">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+							Añadir a la lista
+						</button>
+					</div>
+				</div>
+
+				<!-- 3. Manicure Premium -->
+				<div class="service-card">
+					<div class="service-img-box">
+						<img src="/images/MANICURE.webp" alt="Manicure Premium" />
+					</div>
+					<div class="service-info">
+						<div>
+							<h3>Manicure Premium</h3>
+							<p>Cuidado estético y relajante para tus manos con aceites esenciales y acabados impecables.</p>
+						</div>
+						<button class="add-to-cart-btn" onclick="addToCart('Manicure Premium', '/images/MANICURE.webp')">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+							Añadir a la lista
+						</button>
+					</div>
+				</div>
+
+				<!-- 4. Masaje Facial -->
+				<div class="service-card">
+					<div class="service-img-box">
+						<img src="/images/masaje-facial.webp" alt="Masaje Facial" />
+					</div>
+					<div class="service-info">
+						<div>
+							<h3>Masaje Facial</h3>
+							<p>Estimula la microcirculación y relaja los músculos del rostro para un look fresco y radiante.</p>
+						</div>
+						<button class="add-to-cart-btn" onclick="addToCart('Masaje Facial', '/images/masaje-facial.webp')">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+							Añadir a la lista
+						</button>
+					</div>
+				</div>
+
+				<!-- 5. Masaje Profundo -->
+				<div class="service-card">
+					<div class="service-img-box">
+						<img src="/images/masaje profundo.webp" alt="Masaje Profundo" />
+					</div>
+					<div class="service-info">
+						<div>
+							<h3>Masaje Profundo</h3>
+							<p>Técnica terapéutica que libera tensiones crónicas y nudos musculares con presión profunda.</p>
+						</div>
+						<button class="add-to-cart-btn" onclick="addToCart('Masaje Profundo', '/images/masaje profundo.webp')">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+							Añadir a la lista
+						</button>
+					</div>
+				</div>
+
+				<!-- 6. Facial Rejuvenecedor -->
+				<div class="service-card">
+					<div class="service-img-box">
+						<img src="/images/facial-rejuvenecedor.webp" alt="Facial Rejuvenecedor" />
+					</div>
+					<div class="service-info">
+						<div>
+							<h3>Facial Rejuvenecedor</h3>
+							<p>Regenera tu piel con activos avanzados y masaje reafirmante para un resplandor juvenil.</p>
+						</div>
+						<button class="add-to-cart-btn" onclick="addToCart('Facial Rejuvenecedor', '/images/facial-rejuvenecedor.webp')">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+							Añadir a la lista
+						</button>
+					</div>
+				</div>
+
+				<!-- 7. Conoterapia -->
+				<div class="service-card">
+					<div class="service-img-box">
+						<img src="/images/conoterapia.webp" alt="Conoterapia" />
+					</div>
+					<div class="service-info">
+						<div>
+							<h3>Conoterapia</h3>
+							<p>Limpieza natural de oídos con técnica ancestral para un equilibrio total del cuerpo.</p>
+						</div>
+						<button class="add-to-cart-btn" onclick="addToCart('Conoterapia', '/images/conoterapia.webp')">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+							Añadir a la lista
+						</button>
+					</div>
+				</div>
+
+				<!-- 8. Aparatología -->
+				<div class="service-card">
+					<div class="service-img-box">
+						<img src="/images/Aparatologia.jpg" alt="Aparatología" />
+					</div>
+					<div class="service-info">
+						<div>
+							<h3>Aparatología</h3>
+							<p>Tratamientos corporales y faciales con tecnología de vanguardia para resultados visibles.</p>
+						</div>
+						<button class="add-to-cart-btn" onclick="addToCart('Aparatología', '/images/Aparatologia.jpg')">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+							Añadir a la lista
+						</button>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- ═══ Bolsita Flotante ═══ -->
+		<div class="cart-float">
+			<div class="cart-trigger" id="cart-trigger" onclick="toggleCart()">
+				<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+				<span class="cart-count" id="cart-count">0</span>
+			</div>
+		</div>
+
+		<!-- ═══ Panel del Carrito ═══ -->
+		<div class="overlay" id="cart-overlay" onclick="toggleCart()"></div>
+		<div class="cart-panel" id="cart-panel">
+			<div class="cart-header">
+				<h2>Tu Selección</h2>
+				<button class="close-cart" onclick="toggleCart()">&times;</button>
+			</div>
+			<div class="cart-items" id="cart-items-container">
+				<!-- Items se cargan aquí dinámicamente -->
+			</div>
+			<div class="cart-footer">
+				<button class="whatsapp-btn" onclick="reserveOnWhatsApp()">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.215 3.076.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+					<span>Reservar por WhatsApp</span>
+				</button>
+			</div>
+		</div>
+
+		<!-- ═══ Footer ═══ -->
+		<footer class="page-footer">
+			<div class="container footer-inner">
+				<div>
+					<h4 class="footer-title">Menú</h4>
+					<ul class="footer-nav-links">
+						<li><a href="/">Inicio</a></li>
+						<li><a href="/#services">Servicios</a></li>
+						<li><a href="/#contact">Ubicación</a></li>
+						<li><a href="/#contact">Citas</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="footer-title">Nuestra Ubicación</h4>
+					<ul class="footer-address">
+						<li>Isabel Amalia 1508</li>
+						<li>Ampliación Las Flores 2o. Sector</li>
+						<li>25775 Monclova, Coah.</li>
+						<li style="margin-top: 1rem; color: var(--c-primary);">
+							<strong>Teléfonos:</strong><br/>
+							866 143 6589<br/>
+							866 131 2071<br/>
+							866 210 1205
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="container">
+					<p>
+						Desarrollado por
+						<a href="https://devdiazlabs.com/" target="_blank" rel="noopener noreferrer" class="dev-link">DevDiaz Labs</a>
+					</p>
+				</div>
+			</div>
+		</footer>
+
+		<!-- ═══ JavaScript ═══ -->
+		<script is:inline>
+			let cart = [];
+
+			function initCart() {
+				const savedCart = localStorage.getItem('demich_cart');
+				if (savedCart) {
+					try {
+						const parsed = JSON.parse(savedCart);
+						if (Array.isArray(parsed)) {
+							cart = parsed;
+						}
+					} catch (e) {
+						cart = [];
+					}
+				}
+				updateCartUI();
+			}
+
+			function saveCart() {
+				localStorage.setItem('demich_cart', JSON.stringify(cart));
+			}
+
+			function addToCart(serviceName, serviceImg) {
+				const existingItem = cart.find(item => item.name === serviceName);
+
+				if (existingItem) {
+					existingItem.quantity = (existingItem.quantity || 0) + 1;
+				} else {
+					cart.push({
+						name: serviceName,
+						image: serviceImg,
+						quantity: 1
+					});
+				}
+
+				saveCart();
+				updateCartUI();
+
+				const trigger = document.getElementById('cart-trigger');
+				if (trigger) {
+					trigger.classList.add('pulse');
+					setTimeout(() => trigger.classList.remove('pulse'), 400);
+				}
+			}
+
+			function changeQuantity(index, delta) {
+				cart[index].quantity += delta;
+
+				if (cart[index].quantity <= 0) {
+					removeItem(index);
+				} else {
+					saveCart();
+					updateCartUI();
+				}
+			}
+
+			function removeItem(index) {
+				cart.splice(index, 1);
+				saveCart();
+				updateCartUI();
+			}
+
+			function updateCartUI() {
+				const countEl = document.getElementById('cart-count');
+				const itemsContainer = document.getElementById('cart-items-container');
+
+				if (!countEl || !itemsContainer) return;
+
+				const totalItems = cart.reduce((acc, item) => acc + (parseInt(item.quantity) || 0), 0);
+				countEl.innerText = totalItems;
+
+				if (cart.length === 0) {
+					itemsContainer.innerHTML = `<div style="text-align:center; color: #999; margin-top: 5rem;"><p>Tu selección está vacía aún.</p></div>`;
+					return;
+				}
+
+				itemsContainer.innerHTML = cart.map((item, index) => {
+					const displayName = item.name;
+					const img = item.image || '';
+					const qty = item.quantity || 1;
+
+					return `
+					<div class="cart-item">
+						<img src="${img}" class="cart-item-img" alt="${displayName}">
+						<div class="cart-item-details">
+							<span class="cart-item-name">${displayName}</span>
+							<div class="quantity-controls">
+								<button class="qty-btn" onclick="changeQuantity(${index}, -1)" aria-label="Restar">−</button>
+								<span class="qty-value">${qty}</span>
+								<button class="qty-btn" onclick="changeQuantity(${index}, 1)" aria-label="Sumar">+</button>
+							</div>
+						</div>
+						<button class="remove-item" onclick="removeItem(${index})" title="Eliminar servicio">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+							</svg>
+						</button>
+					</div>
+					`;
+				}).join('');
+			}
+
+			function toggleCart(forceOpen = false) {
+				const panel = document.getElementById('cart-panel');
+				const overlay = document.getElementById('cart-overlay');
+
+				if (!panel || !overlay) return;
+
+				if (forceOpen) {
+					panel.classList.add('active');
+					overlay.classList.add('active');
+				} else {
+					panel.classList.toggle('active');
+					overlay.classList.toggle('active');
+				}
+			}
+
+			function reserveOnWhatsApp() {
+				if (cart.length === 0) return;
+
+				const intro = "Hola, me gustaría reservar los siguientes servicios en Spa Demich:";
+				const servicesList = cart.map(item => {
+					return `${item.quantity}x ${item.name}`;
+				}).join("%0A- ");
+
+				const message = `${intro}%0A%0A- ${servicesList}%0A%0AMi nombre es: `;
+				const waNumber = "528662101205";
+				window.open(`https://wa.me/${waNumber}?text=${message}`, '_blank');
+			}
+
+			window.addEventListener('DOMContentLoaded', () => {
+				initCart();
+			});
+		</script>
+	</body>
+</html>
